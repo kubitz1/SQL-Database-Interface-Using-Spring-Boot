@@ -1,0 +1,22 @@
+<h1>Update Course</h1>
+<link rel="stylesheet" href="/css/styles.css">
+<form th:action="@{/course/{courseId}/save(courseId=${courseId})}" method="post">
+    <input type="hidden" id="courseId" name="courseId" value="{courseId}">
+    <table>
+        <tr>
+            <td><label for="courseName">Course Name:</label></td>
+            <td><input th:value="${courseName}" type="text" id="courseName" name="courseName" required></td>
+        </tr>
+        <tr>
+            <td><label for="duration">Duration:</label></td>
+            <td><input type="number" id="duration" name="duration" th:value="${duration}" required></td>
+        </tr>
+        <tr>
+            <td><label for="difficulty">Difficulty:</label></td>
+            <td><input type="text" id="difficulty" name="difficulty" th:value="${difficulty}" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Update Course</button></td>
+        </tr>
+    </table>
+</form>

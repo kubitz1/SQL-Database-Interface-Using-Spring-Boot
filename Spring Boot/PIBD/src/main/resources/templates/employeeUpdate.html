@@ -1,0 +1,26 @@
+<h1>Update Employee</h1>
+<link rel="stylesheet" type="text/css" href="/css/styles.css">
+<form th:action="@{/employee/{employeeID}/save(employeeID=${employeeID})}" method="post">
+    <input type="hidden" id="employeeID" name="employeeID" value="{employeeID}">
+    <table>
+        <tr>
+            <td><label for="Name">Employee Name:</label></td>
+            <td><input th:value="${Name}" type="text" id="Name" name="Name" required></td>
+        </tr>
+        <tr>
+            <td><label for="Position">Position:</label></td>
+            <td><input type="text" id="Position" name="Position" th:value="${Position}" required></td>
+        </tr>
+        <tr>
+            <td><label for="Department">Department:</label></td>
+            <td><input type="text" id="Department" name="Department" th:value="${Department}" required></td>
+        </tr>
+        <tr>
+            <td><label for="Salary">Salary:</label></td>
+            <td><input type="text" id="Salary" name="Salary" th:value="${Salary}" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Update Employee</button></td>
+        </tr>
+    </table>
+</form>

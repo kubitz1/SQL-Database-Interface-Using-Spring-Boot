@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<h1>Employee List</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Hire Date</th>
+        <th>Department</th>
+        <th>Salary</th>
+        <th>Update Employee</th>
+        <th>Delete Employee</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employee : ${employees}">
+        <td th:text="${employee.EmployeeID}">Employee ID</td>
+        <td th:text="${employee.Name}">Name</td>
+        <td th:text="${employee.Position}">Position</td>
+        <td th:text="${#dates.format(employee.HireDate, 'yyyy-MM-dd')}">Hire Date</td>
+        <td th:text="${employee.Department}">Department</td>
+        <td th:text="${employee.Salary}">Salary</td>
+        <td>
+            <a th:href="@{/employee/{employeeID}/update(employeeID=${employee.getEmployeeID()})}">
+                Edit
+            </a>
+        </td>
+        <td>
+            <form th:action="@{/employee/{id}/delete(id=${employee.getEmployeeID()})}" method="post">
+                <input type="hidden" name="_method" value="delete"/>
+                <button type="submit">Delete</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+
+<body>
+<h1>Add Employee</h1>
+
+<form th:action="@{/employee/create}" method="post">
+    <table>
+        <tr>
+            <td><label for="Name">Employee Name:</label></td>
+            <td><input type="text" id="Name" name="Name" required></td>
+        </tr>
+        <tr>
+            <td><label for="Position">Position:</label></td>
+            <td><input type="text" id="Position" name="Position" required></td>
+        </tr>
+        <tr>
+            <td><label for="Department">Department:</label></td>
+            <td><input type="text" id="Department" name="Department" required></td>
+        </tr>
+        <tr>
+            <td><label for="Salary">Salary:</label></td>
+            <td><input type="text" id="Salary" name="Salary" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Add Employee</button></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

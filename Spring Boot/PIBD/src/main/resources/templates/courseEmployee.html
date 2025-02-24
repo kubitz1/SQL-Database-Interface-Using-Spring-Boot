@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees List</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+<p>Course ID: <span th:text="${courseID}"></span></p>
+<table>
+    <thead>
+    <tr>
+        <th>Employee ID</th>
+        <th>Name</th>
+        <th>Position</th>
+        <th>Hire Date</th>
+        <th>Department</th>
+        <th>Salary</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="employeeVar : ${employees}">
+        <td th:text="${employeeVar.getEmployeeID()}"></td>
+        <td th:text="${employeeVar.getName()}"></td>
+        <td th:text="${employeeVar.getPosition()}"></td>
+        <td th:text="${employeeVar.getHireDate()}"></td>
+        <td th:text="${employeeVar.getDepartment()}"></td>
+        <td th:text="${employeeVar.getSalary()}"></td>
+        <td>
+            <form th:action="@{/course/{courseID}/employee/remove/{employeeID}(courseID=${courseID}, employeeID=${employeeVar.getEmployeeID()})}" method="post">
+                <button type="submit">Remove</button>
+            </form>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<h1>Add New Employee</h1>
+<form th:action="@{/course/{courseID}/employee/add(courseID=${courseID})}" method="post">
+    <table>
+        <tr>
+            <td><label for="employeeID">Employee ID:</label></td>
+            <td><input type="text" id="employeeID" name="employeeID" required></td>
+        </tr>
+        <tr>
+            <td><label for="grade">Grade:</label></td>
+            <td><input type="number" id="grade" name="grade" required></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Add Employee</button></td>
+        </tr>
+    </table>
+</form>
+
+</body>
